@@ -12,6 +12,32 @@ if($conn){
     echo"ERROR : Not connected to the $db database";
 }
 
+$result1=mysqli_query($conn,"SELECT * FROM user WHERE id=2");
+//avec un tableau indexer
+$data1=mysqli_fetch_row($result1);
+
+echo"<br>";
+echo"Premier fetch";
+echo"<br>";
+echo"<br>";
+var_dump($result1);
+echo"<br>";
+echo"<br>";
+var_dump($data1);
+
+$result2=mysqli_query($conn,"SELECT * FROM user WHERE id=1");
+//avec fetch tableau associatif
+$data2=mysqli_fetch_assoc($result2);
+
+echo"<br>";
+echo"second fetch";
+echo"<br>";
+echo"<br>";
+echo"<br>";
+var_dump($result2);
+echo"<br>";
+echo"<br>";
+var_dump($data2);
 
 
 ?>
