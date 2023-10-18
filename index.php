@@ -56,5 +56,30 @@ echo"<br>";
 echo"<br>";
 var_dump($data3);
 
+// recuperer toutes les lignes de la table user
+
+//avec fetch assoc
+$result4=mysqli_query($conn,"SELECT user_name,email,id FROM user");
+
+$data4=[];
+$i=0;
+while($rangeData = mysqli_fetch_assoc($result4)){
+    $data4[$i] = $rangeData;
+    $i++;  
+
+    echo"<br>";
+    echo"<br>";
+    echo "Nom de l'usager :".$rangeData["user_name"]."<br>";
+    echo"Courriel: ".$rangeData["email"]."<br>";
+};
+
+    echo"<br><br>";
+    echo"Quatrieme fetch";
+    echo"<br><br>";
+    echo"Mon array aura : ".mysqli_num_rows($result4)."lignes.";
+    echo"<br><br>";
+    var_dump($result4);
+    echo"<br><br>";
+    var_dump($data4);
 
 ?>
