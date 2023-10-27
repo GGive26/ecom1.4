@@ -138,3 +138,13 @@ $data8=[
 
  updateUser($data8);
  deleteUser(9);
+ //j'ai effacer la virgule qui se trouve a la fin 
+ //1ere option
+ $toto="hdfihv,,,,fhj,";
+//  var_dump($toto);
+//  $trim=trim($toto,",");
+//  var_dump($trim);
+
+//2e option 
+// $delete=substr_replace($toto,"",-1);
+// var_dump($delete);
