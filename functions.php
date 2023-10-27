@@ -62,29 +62,58 @@ function getAllUserIndex(){
     }
 
     function createUser($data) {
+
+        //var_dump("Je rentre dans ma fonction");
         global $conn;
-        $query="INSERT INTO 'user' ('id', 'user_name', 'email', 'password') VALUES (NULL,?,?,?);";
-        $result=mysqli_query($conn, $query);
+        $query="INSERT INTO user VALUES (NULL,?,?,?);";
+        // $result=mysqli_query($conn, $query);
 
-
+        //var_dump($query);
+        //var_dump($conn);
+        $stmt = mysqli_prepare($conn,$query);
+        //var_dump($stmt);
         if ($stmt = mysqli_prepare($conn,$query)) {
-
+            var_dump("je suis dans mon if");
             /* Lecture des marqueurs */
-            mysqli_stmt_bind_param($stmt,"s",$data['user_name']);
-            mysqli_stmt_bind_param($stmt,"s",$data['email']);
-            mysqli_stmt_bind_param($stmt,"s",$data['pwd']);
+            mysqli_stmt_bind_param($stmt,"sss",$data['user_name'],$data['email'],$data['pwd']);
         
             /* Exécution de la requête */
             $result=mysqli_stmt_execute($stmt);
-
             var_dump($result);
-        
-            /* Récupération des valeurs */
-            //mysqli_stmt_fetch($stmt);
-        
-            /* Fermeture du traitement */
-            //mysqli_stmt_close($stmt);
-        }
+        };
+        return $data;
+  }
+  function updateUser($data){
+    global $conn;
+    $query="UPDATE user SET user_name=?,email=?,password=? where id=?";
+    if($stmt=mysqli_prepare($conn,$query)){
 
-    }
+        //lecture des marqueurs
+        mysqli_stmt_bind_param($stmt,"sssi", $data["user_name"], $data["email"], $data["password"],$data["id"]);
+        
+        //EXECUTION DE LA REQUETE
+        $result=mysqli_stmt_execute($stmt); 
+        echo"<br><br>";
+        echo"coucou je suis change ";
+        echo"<br><br>";
+        var_dump($result);
+        return $result;
+    }};
+    function deleteUser($id){
+        global $conn;
+        $query= "DELETE from  user where id=?";
+        if($stmt=mysqli_prepare($conn,$query)){
+
+            //lecture des marqueurs
+            mysqli_stmt_bind_param($stmt,"i",$id);
+            
+            //EXECUTION DE LA REQUETE
+            $result=mysqli_stmt_execute($stmt); 
+            echo"<br><br>";
+            echo"coucou je suis supprime ";
+            echo"<br><br>";
+            var_dump($result);
+            return $result;
+        }};
+
 ?>

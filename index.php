@@ -121,11 +121,20 @@ echo"</ul>";
 //     var_dump($data6);
 // les donnees pourrais venir de $_POST['email']
 $data7=[
-    "user_name"=> "michel",
-    "email"=> "michel@michel.ca",
-    "pwd"=> ""
+    'user_name'=> 'michel',
+    'email'=> 'michel@michel.ca',
+    'pwd'=> ''
 ];
 
-$newUser=createUser($data7);
+//$newUser = createUser($data7);
 
- ?>
+$data8=[
+    'id'=>'8',
+    'user_name'=>'michelle',
+    'email'=>'michel@michel.ca',
+    'pwd'=>'',
+];
+//$newUser = createUser($data8);
+
+ updateUser($data8);
+ deleteUser(9);
